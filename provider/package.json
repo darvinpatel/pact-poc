@@ -1,0 +1,23 @@
+{
+  "name": "provider",
+  "version": "1.0.0",
+  "description": "Pact Provider POC",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest",
+    "test:pact": "jest --testTimeout 30000 verify.pact.test.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "^9.11.1",
+    "@pact-foundation/pact-node": "^10.10.1",
+    "jest": "^27.5.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000
+  }
+}
