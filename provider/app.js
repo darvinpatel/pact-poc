@@ -9,13 +9,13 @@ app.use(express.json());
 const users = [
   {
     id: 1,
-    name: 'John Doe',
-    email: 'john.doe@example.com'
+    name: 'Darvin Patel',
+    email: 'darvin.patel@example.com'
   },
   {
     id: 2,
-    name: 'Jane Smith',
-    email: 'jane.smith@example.com'
+    name: 'Seemons Patel',
+    email: 'seemons.patel@example.com'
   }
 ];
 

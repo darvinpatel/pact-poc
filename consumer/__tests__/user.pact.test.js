@@ -36,8 +36,8 @@ describe('User API Pact', () => {
     it('should return a user when it exists', async () => {
       const expectedUser = {
         id: 1,
-        name: 'John Doe',
-        email: 'john.doe@example.com'
+        name: 'Darvin Patel',
+        email: 'darvin.patel@example.com'
       };
 
       await provider.addInteraction({
@@ -86,13 +86,13 @@ describe('User API Pact', () => {
       const expectedUsers = [
         {
           id: 1,
-          name: 'John Doe',
-          email: 'john.doe@example.com'
+          name: 'Darvin Patel',
+          email: 'darvin.patel@example.com'
         },
         {
           id: 2,
-          name: 'Jane Smith',
-          email: 'jane.smith@example.com'
+          name: 'Seemmons Patel',
+          email: 'seemons.patel@example.com'
         }
       ];
 
