@@ -91,7 +91,7 @@ describe('User API Pact', () => {
         },
         {
           id: 2,
-          name: 'Seemmons Patel',
+          name: 'Seemons Patel',
           email: 'seemons.patel@example.com'
         }
       ];
