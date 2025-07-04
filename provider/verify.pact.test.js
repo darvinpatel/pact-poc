@@ -16,24 +16,19 @@ describe('Pact Verification', () => {
   });
 
   it('validates the expectations of UserConsumer', async () => {
-    const pactFile = path.resolve(__dirname, '../consumer/pacts/userconsumer-userprovider.json');
     const opts = {
       provider: 'UserProvider',
       providerBaseUrl: 'http://localhost:3000',
-      publishVerificationResult: false,
       providerVersion: '1.0.0',
-      logLevel: 'INFO',
-      pactUrls: [pactFile]
+      logLevel: 'DEBUG',
+      pactUrls: ['http://127.0.0.1:8000/pacts/provider/UserProvider/consumer/UserConsumer/version/1.0.8'],
+      pactBrokerUrl: process.env.PACT_BROKER_BASE_URL || "http://127.0.0.1:8000",
+      pactBrokerUsername: process.env.PACT_BROKER_USERNAME || "darvin",
+      pactBrokerPassword: process.env.PACT_BROKER_PASSWORD || "darvin",
+      publishVerificationResult: process.env.CI || process.env.PACT_BROKER_PUBLISH_VERIFICATION_RESULTS
     };
 
-    // Only use broker if environment variables are set
-    if (process.env.PACT_BROKER_BASE_URL) {
-      opts.pactBrokerUrl = process.env.PACT_BROKER_BASE_URL;
-      opts.pactBrokerUsername = process.env.PACT_BROKER_USERNAME || 'pact_workshop';
-      opts.pactBrokerPassword = process.env.PACT_BROKER_PASSWORD || 'pact_workshop';
-      opts.publishVerificationResult = true;
-      delete opts.pactUrls; // Remove local pactUrls when using broker
-    }
+    console.log('Verification options:', JSON.stringify(opts, null, 2));
 
     const verifier = new Verifier(opts);
     

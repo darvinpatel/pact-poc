@@ -1,12 +1,12 @@
 {
   "name": "consumer",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "Pact Consumer POC",
   "main": "src/userApi.js",
   "scripts": {
     "test": "jest",
     "test:pact": "jest --testTimeout 30000 __tests__/user.pact.test.js",
-    "pact:publish": "node publish.pact.js"
+    "pact:publish": "pact-broker publish ./pacts --consumer-app-version=$npm_package_version --auto-detect-version-properties --broker-base-url=http://127.0.0.1:8000 --broker-username darvin --broker-password darvin && curl -X PUT -H 'Content-Type: application/json' -u darvin:darvin http://127.0.0.1:8000/pacticipants/UserConsumer/versions/$npm_package_version/tags/main"
   },
   "dependencies": {
     "node-fetch": "^2.6.7"
