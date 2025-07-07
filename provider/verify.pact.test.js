@@ -1,6 +1,7 @@
 const path = require('path');
 const { Verifier } = require('@pact-foundation/pact');
 const app = require('./app');
+const packageJson = require('./package.json');
 
 describe('Pact Verification', () => {
   let server;
@@ -19,13 +20,13 @@ describe('Pact Verification', () => {
     const opts = {
       provider: 'UserProvider',
       providerBaseUrl: 'http://localhost:3000',
-      providerVersion: '1.0.0',
+      providerVersion: process.env.PACT_PROVIDER_VERSION || packageJson.version,
       logLevel: 'DEBUG',
-      pactUrls: ['http://127.0.0.1:8000/pacts/provider/UserProvider/consumer/UserConsumer/version/1.0.8'],
+      pactUrls: ['http://127.0.0.1:8000/pacts/provider/UserProvider/consumer/UserConsumer/version/1.0.4'],
       pactBrokerUrl: process.env.PACT_BROKER_BASE_URL || "http://127.0.0.1:8000",
       pactBrokerUsername: process.env.PACT_BROKER_USERNAME || "darvin",
       pactBrokerPassword: process.env.PACT_BROKER_PASSWORD || "darvin",
-      publishVerificationResult: process.env.CI || process.env.PACT_BROKER_PUBLISH_VERIFICATION_RESULTS
+      publishVerificationResult: true
     };
 
     console.log('Verification options:', JSON.stringify(opts, null, 2));
